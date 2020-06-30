@@ -63,7 +63,7 @@ class _SignInState extends State<SignIn> {
                  
                   items: bloodtypes.map((String type){
                     return DropdownMenuItem(
-                      child: Text(type),
+                      child: Text(type, style: TextStyle(fontSize:20 , color: Colors.brown),),
                       value:type,
                       );
                   }).toList()

@@ -27,6 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
        User(nom:'sidimed',prenom: 'meddou',bloodtype: 'A-  ',number: 37994662),
       User(nom:'med',prenom: 'Mahmoud',bloodtype: 'O    ',number: 22334662),
       User(nom:'sara',prenom: 'ahmed',bloodtype: 'A+  ',number: 43434662),
+        User(nom:'Med',prenom: 'Mahmoud',bloodtype: 'O    ',number: 32324252),
+         User(nom:'Sara',prenom: 'ahmed',bloodtype: 'A+  ',number: 32324252),
+      User(nom:'Med',prenom: 'nahoui',bloodtype: 'AB+',number: 43434662),
+      User(nom:'med',prenom: 'MV',bloodtype: 'O    ',number: 43434662),
+      User(nom:'sidi',prenom: 'ali',bloodtype: 'A+  ',number: 43434662),
+      User(nom:'mohamed',prenom: 'ahmedMeddou',bloodtype: 'AB+',number: 43434662),
+       User(nom:'sidimed',prenom: 'meddou',bloodtype: 'A-  ',number: 43434662),
+      User(nom:'med',prenom: 'Mahmoud',bloodtype: 'O    ',number: 43434662),
        
     
       ];

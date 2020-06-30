@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:zoumra/Models/user.dart';
 
 class Mydrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    User me = User(nom:'Mohamed',prenom:'MV',number: 32424566,bloodtype: 'AB+');
    
     return ListView(
       children: <Widget>[
@@ -26,7 +28,7 @@ class Mydrawer extends StatelessWidget {
                        decoration: BoxDecoration(
                          border: Border(bottom: BorderSide(color: Colors.black26))
                        ),
-                       child: Text("AB+",
+                       child: Text("${me.bloodtype}",
                        style: TextStyle( 
                          fontSize: 80,
                          color: Colors.blue
@@ -39,7 +41,7 @@ class Mydrawer extends StatelessWidget {
                  
                
               
-                Text('Mohomed medvall' ,
+                Text('${me.nom} ${me.prenom}' ,
                 style: TextStyle(
                   fontSize:  15,
                   
