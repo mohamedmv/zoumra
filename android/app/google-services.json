@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "734818609080",
+    "firebase_url": "https://zoumra-database.firebaseio.com",
+    "project_id": "zoumra-database",
+    "storage_bucket": "zoumra-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734818609080:android:567f462d8328f6156e914d",
+        "android_client_info": {
+          "package_name": "com.example.zoumra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734818609080-g4m838jp2idui8jmkktfvsemhildhrgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5SDWcbMG7s1q3wMrqJMLfZMDsZCvQxKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734818609080-g4m838jp2idui8jmkktfvsemhildhrgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

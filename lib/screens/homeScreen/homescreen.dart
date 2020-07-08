@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zoumra/Models/user.dart';
+
+import 'package:zoumra/Models/userdata.dart';
 import 'package:zoumra/screens/homeScreen/mydrawer.dart';
 import 'package:zoumra/screens/homeScreen/mylist.dart';
+import 'package:zoumra/services/database.dart';
+import 'package:zoumra/shared/Loading.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -9,59 +12,78 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<String> bloodtypes = ['All', 'O','A+','AB+','A-'];
+    String _bloodtype = 'All';
   @override
   Widget build(BuildContext context) {
+   
 
     Mylist list = Mylist();
 
-    List<User> userslist= [
-       User(nom:'Med',prenom: 'Mahmoud',bloodtype: 'O    ',number: 32324252),
-         User(nom:'Sara',prenom: 'ahmed',bloodtype: 'A+  ',number: 32324252),
-      User(nom:'Med',prenom: 'nahoui',bloodtype: 'AB+',number: 43434662),
-      User(nom:'med',prenom: 'MV',bloodtype: 'O    ',number: 43434662),
-      User(nom:'sidi',prenom: 'ali',bloodtype: 'A+  ',number: 43434662),
-      User(nom:'mohamed',prenom: 'ahmedMeddou',bloodtype: 'AB+',number: 43434662),
-       User(nom:'sidimed',prenom: 'meddou',bloodtype: 'A-  ',number: 43434662),
-      User(nom:'med',prenom: 'Mahmoud',bloodtype: 'O    ',number: 43434662),
-      User(nom:'sara',prenom: 'ahmed',bloodtype: 'A+  ',number: 4433662),
-       User(nom:'sidimed',prenom: 'meddou',bloodtype: 'A-  ',number: 37994662),
-      User(nom:'med',prenom: 'Mahmoud',bloodtype: 'O    ',number: 22334662),
-      User(nom:'sara',prenom: 'ahmed',bloodtype: 'A+  ',number: 43434662),
-        User(nom:'Med',prenom: 'Mahmoud',bloodtype: 'O    ',number: 32324252),
-         User(nom:'Sara',prenom: 'ahmed',bloodtype: 'A+  ',number: 32324252),
-      User(nom:'Med',prenom: 'nahoui',bloodtype: 'AB+',number: 43434662),
-      User(nom:'med',prenom: 'MV',bloodtype: 'O    ',number: 43434662),
-      User(nom:'sidi',prenom: 'ali',bloodtype: 'A+  ',number: 43434662),
-      User(nom:'mohamed',prenom: 'ahmedMeddou',bloodtype: 'AB+',number: 43434662),
-       User(nom:'sidimed',prenom: 'meddou',bloodtype: 'A-  ',number: 43434662),
-      User(nom:'med',prenom: 'Mahmoud',bloodtype: 'O    ',number: 43434662),
-       
-    
-      ];
+   
       
     
-    return Scaffold(
-      backgroundColor: Colors.grey[400],
-     
-      appBar: AppBar(
-        backgroundColor:Colors.deepPurple[400] ,
-        title: Text('HomeScreen')
+    return  Scaffold(
+            backgroundColor: Colors.grey[400],
+           
+            appBar: AppBar(
+              actions: <Widget>[
+                Container(
+                  
+                  padding: EdgeInsets.all(5),
+                  child: DropdownButton(
+                  
+                   
+                    items: bloodtypes.map((String type){
+                      return DropdownMenuItem(
+                        child: Text(type, style: TextStyle( fontWeight: FontWeight.bold, fontSize:20 , color: Colors.black),),
+                        value:type,
+                        );
+                    }).toList()
+                    ,
+                  value:_bloodtype
+                   ,onChanged: (s){
+                     setState(() {
+                       _bloodtype= s;
+                     });
+                     print(s);
+                     
+                   }),
+                ),
+              ],
+              backgroundColor:Colors.deepPurple[400] ,
+              title: Text('HomeScreen')
 
-      ),
-      drawer: Drawer( 
-        child: Mydrawer(),
-      ),
-      body: list.creatlist(userslist),
+            ),
+            drawer: Drawer( 
+              child: Mydrawer(),
+            ),
+            body: StreamBuilder<List<Userdata>>(
+        stream: DatabaseService().userslist(_bloodtype) ,
+        builder: (context, snapshot) {
+             
+             List<Userdata> userslist= snapshot.data;
+         if(snapshot.hasData){return Container(
+              child: list.creatlist(userslist),
+              
+            );
+            
+            }else{
+            
+            return Loading();
+            }
+            }),
 
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add) ,
-        backgroundColor: Colors.deepPurple[400],
-        onPressed: (){
-          Navigator.pushNamed(context, '/signin');
-        }),
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add) ,
+              backgroundColor: Colors.deepPurple[400],
+              onPressed: (){
+                Navigator.pushNamed(context, '/signin');
+              }),
 
-    );
+          );
+          }
+       
   }
 
  
-}

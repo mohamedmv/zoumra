@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zoumra/Models/user.dart';
+import 'package:zoumra/Models/userdata.dart';
 
 class Mylist{
 
-  ListView creatlist(List<User> data){
+  ListView creatlist(List<Userdata> data){
 
     return ListView.builder(
       itemCount:data.length ,
@@ -28,12 +28,16 @@ class Mylist{
              style: TextStyle(letterSpacing: 0.5 )
              
              ),
-             trailing: Text('${data[index].bloodtype}',
+             trailing: CircleAvatar(
+               backgroundColor: Colors.purpleAccent[700],
+               child:Text('${data[index].bloodtype}',
              style: TextStyle(
-               fontSize:40,
-               color: Colors.brown   ,
-               fontWeight: FontWeight.bold
+                 fontSize:20,
+                 color: Colors.blueAccent,
+                 fontWeight: FontWeight.bold
              ),
+             ),
+               
              
              ),
             

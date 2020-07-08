@@ -10,31 +10,54 @@ class _InfoScreenState extends State<InfoScreen> {
   Widget build(BuildContext context) {
     Map user = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-     backgroundColor: Colors.white,
+      
+     backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         title: Text('Info'),
         backgroundColor:Colors.deepPurple[400] ,
       ),
+    
       body: Center(
-        child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                
-                Text('Nom : ${user['nom']} ${user['prenom']}',
-                style: TextStyle(fontSize:20, color: Colors.black,fontWeight: FontWeight.w600 ),
-                ),
+      
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Material(
+            
+            
+           elevation: 7.0,
+           borderRadius: BorderRadius.circular(10.0),
+            child: Container(
+              margin: EdgeInsets.all(50),
+              height: 100,
+              
+              
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                    
+                    children: <Widget>[
+                      
+                      Text('Nom : ${user['nom']} ${user['prenom']}',
+                      style: TextStyle(fontSize:20, color: Colors.black,fontWeight: FontWeight.w600 ),
+                      ),
 
-                Text('Numero : ${user['numero']}',
-                style: TextStyle(fontSize:20, color: Colors.black , fontWeight: FontWeight.w600),
-                ),
+                      Text('Numero : ${user['numero']}',
+                      style: TextStyle(fontSize:20, color: Colors.black , fontWeight: FontWeight.w600),
+                      ),
 
-                Text('Group Sangin : ${user['bloodtype']}',
-                style: TextStyle(fontSize:20, color: Colors.black,fontWeight: FontWeight.w600 ),
-                ),
-                
+                      Text('Group Sangin : ${user['bloodtype']}',
+                      style: TextStyle(fontSize:20, color: Colors.black,fontWeight: FontWeight.w600 ),
+                      ),
+                       Text('Ville: ${user['city']}',
+                      style: TextStyle(fontSize:20, color: Colors.black,fontWeight: FontWeight.w600 ),
+                      ),
+                      
 
-              ]
+                    ]
+                  ),
             ),
+          ),
+        ),
       ),
         
       
