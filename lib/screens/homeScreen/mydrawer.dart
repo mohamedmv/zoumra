@@ -97,7 +97,7 @@ class _MydrawerState extends State<Mydrawer> {
                       Navigator.pushNamed(context, '/settings');
                     },
                     leading: Icon(Icons.settings),
-                    title: Text('bala alala')
+                    title: Text('Settings')
                   ),
                 ),
                  Container(
