@@ -11,7 +11,7 @@ class _InfoScreenState extends State<InfoScreen> {
     Map user = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       
-     backgroundColor: Colors.blueGrey[50],
+    //  backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         title: Text('Info'),
         backgroundColor:Colors.deepPurple[400] ,
@@ -27,8 +27,8 @@ class _InfoScreenState extends State<InfoScreen> {
            elevation: 7.0,
            borderRadius: BorderRadius.circular(10.0),
             child: Container(
-              margin: EdgeInsets.all(50),
-              height: 100,
+              margin: EdgeInsets.all(20),
+               height: 120,
               
               
               child: Column(
@@ -37,19 +37,27 @@ class _InfoScreenState extends State<InfoScreen> {
                     
                     children: <Widget>[
                       
-                      Text('Nom : ${user['nom']} ${user['prenom']}',
-                      style: TextStyle(fontSize:20, color: Colors.black,fontWeight: FontWeight.w600 ),
+                      Wrap(
+                        direction: Axis.horizontal,
+                        children: <Widget>[
+                          Text('Nom : ${user['nom']}',
+                          style: TextStyle(fontSize:20,fontWeight: FontWeight.w500 ),
+                          ),
+                           Text(' ${user['prenom']}',
+                          style: TextStyle(fontSize:20,fontWeight: FontWeight.w500 ),
+                          ),
+                        ],
                       ),
 
                       Text('Numero : ${user['numero']}',
-                      style: TextStyle(fontSize:20, color: Colors.black , fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize:20, fontWeight: FontWeight.w400),
                       ),
 
                       Text('Group Sangin : ${user['bloodtype']}',
-                      style: TextStyle(fontSize:20, color: Colors.black,fontWeight: FontWeight.w600 ),
+                      style: TextStyle(fontSize:20,fontWeight: FontWeight.w400 ),
                       ),
                        Text('Ville: ${user['city']}',
-                      style: TextStyle(fontSize:20, color: Colors.black,fontWeight: FontWeight.w600 ),
+                      style: TextStyle(fontSize:20,fontWeight: FontWeight.w400 ),
                       ),
                       
 

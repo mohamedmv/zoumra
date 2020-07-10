@@ -3,6 +3,8 @@ import 'package:zoumra/Models/userdata.dart';
 import 'package:zoumra/services/database.dart';
 import 'package:zoumra/shared/Loading.dart';
 
+import 'nonconnectedDrawer.dart';
+
 class Mydrawer extends StatefulWidget {
   @override
   _MydrawerState createState() => _MydrawerState();
@@ -18,12 +20,13 @@ class _MydrawerState extends State<Mydrawer> {
 
              stream: DatabaseService().user ,
 
-          builder:(context,snapshot){
+          builder:(context,snapshot1){
 
-          if(snapshot.hasData){ return  StreamBuilder<Userdata>(
-        stream: DatabaseService(uid: snapshot.data.uid).curentUserdata,
+          if(snapshot1.hasData){  print('${snapshot1.data.uid}'); return  StreamBuilder<Userdata>(
+        stream: DatabaseService(uid: snapshot1.data.uid).curentUserdata,
         builder: (context, snapshot) {
             me = snapshot.data;
+           
          if(snapshot.hasData){ return ListView(
                
             children: <Widget>[
@@ -107,7 +110,29 @@ class _MydrawerState extends State<Mydrawer> {
                   ),
                   child: ListTile(
                     onTap: (){
-                      DatabaseService().signOut();
+                      showDialog(
+                        context: context,
+                        child: AlertDialog(
+                          title : Row(
+                            children: <Widget>[
+                              Icon(Icons.error_outline),
+                              Text('Vous etes sure?'),
+                            ],
+                            ),
+                            actions: <Widget>[
+                              FlatButton( 
+                                  
+                                  onPressed: ()async{  await DatabaseService().signOut(); Navigator.pop(context);}, 
+                                  child: Text('Sign out' , style: TextStyle(color:Colors.red),)),
+                                   FlatButton( 
+                                 
+                                  onPressed: (){Navigator.pop(context);}, 
+                                  child: Text('cancel')),
+                             
+                            ],
+                        )
+                        );
+                     
                     },
                     leading: Icon(Icons.error_outline),
                     title: Text('sign out')
@@ -117,11 +142,11 @@ class _MydrawerState extends State<Mydrawer> {
                 
             ],
           );}else{
-        return Loading();
+        return  Loading();
       }
         }
       );}else{
-      return Loading();
+      return NonConnectedDrawer();
     }
           });
    

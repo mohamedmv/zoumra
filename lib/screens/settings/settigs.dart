@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:zoumra/Models/userdata.dart';
 import 'package:zoumra/screens/settings/dialogs.dart';
 import 'package:zoumra/services/database.dart';
 import 'package:zoumra/shared/Loading.dart';
+import 'package:zoumra/shared/theme.dart';
+
+import 'nomconnectedSettings.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -11,13 +14,11 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  String _bloodtype;
-  String _city;
-  String _nom;
-  String _prenom;
-  String _number;
+    
+    
+ 
   Userdata userdata ;
-
+  void fun(a,b){ setState(() => b = a);}
   String uid;
   bool _loading = false;
 
@@ -26,6 +27,11 @@ class _SettingsState extends State<Settings> {
   List<String> bloodtypes = [ 'O','A+','AB+','A-'];
   @override
   Widget build(BuildContext context) {
+    final mytheme = Provider.of<Mytheme>(context);
+      int g;
+     if ( mytheme.theTheme != null)
+      g = mytheme.theTheme ? 0 : 1;
+      else g = 0;
      if(!_loading) { 
         return StreamBuilder<User>(
        stream: DatabaseService().user,
@@ -46,8 +52,89 @@ class _SettingsState extends State<Settings> {
           body: ListView(
             padding: EdgeInsets.all(10),
             children: <Widget>[
+   
+
+                // Dark and light theme buttons
+                 Container(
+               
+                child: Card(
+                 
+                  borderOnForeground: true,
+                  elevation: 3.0,
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Theme', style: TextStyle( fontSize: 23,fontWeight: FontWeight.w600),),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:Flex(
+                        
+                          direction: Axis.horizontal,
+                          children: <Widget>[
+                            
+              Expanded(  flex: 1,
+                              child: Container(   
+                                             padding: EdgeInsets.all(5),
+                            child:Card(
+                              elevation: 6.0,
+                               child: ListTile(
+                                 onTap: () => setState(() { mytheme.changetolight();}) ,
+                                 title:  Row(
+                                   children: <Widget>[
+                                     Text('Light theme',style: TextStyle( fontSize: 15, fontWeight:FontWeight.w600),),
+
+                                     Radio( value: 0, groupValue:  g, activeColor: Colors.purple,
+                                       onChanged:(val){ mytheme.changetolight();}),
+                                   ],
+
+
+                                 ),
+                                
+                               )   
+                            ),
+                          ),
+              ),
+                         
+                          Expanded( flex:1,
+                              child: Container(  
+                              
+                        padding: EdgeInsets.all(5),
+                            child:Card(
+                               elevation: 6.0, 
+                               child: ListTile(
+                                 onTap: () => setState(() {mytheme.changetodark();}) ,
+                                  title:  Row(
+                                   children: <Widget>[
+                                     Text('Dark theme',style: TextStyle( fontSize: 15, fontWeight:FontWeight.w600),),
+
+                                     Radio( value: 1, groupValue:  g, activeColor: Colors.purple,
+                                       onChanged:(val){  mytheme.changetodark();}),
+                                   ],
+
+
+                                 ),
+                               
+                               ), 
+                            ),
+                        ),
+                          ),
+                         
+
+             
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+
+              //setting for nom
               Card(
-                elevation: 7.0,
+                elevation: 6.0,
                               child: ListTile(
                  title: Text('Nom: ${userdata.nom}', style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
@@ -59,8 +146,10 @@ class _SettingsState extends State<Settings> {
                     child: Text('Modifier', style: TextStyle(color:Colors.white),)),
                 ),
               ),
+
+              //setting for prenom
                 Card(
-                elevation: 7.0,
+                elevation: 6.0,
                               child: ListTile(
                  title: Text('Prenom: ${userdata.prenom}', style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
@@ -71,26 +160,37 @@ class _SettingsState extends State<Settings> {
                     child: Text('Modifier', style: TextStyle(color:Colors.white),)),
                 ),
               ),
+
+              //setting for bloodtype
                 Card(
                 elevation: 7.0,
                               child: ListTile(
                  title: Text('Type sanguin: ${userdata.bloodtype}', style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
                    color: Colors.red,
-                   onPressed: (){},
+                   onPressed: (){
+                     setState(() {  Dialogs().bloodtypeDialog(context ,bloodtypes,userdata,_database); });
+                    
+                   },
                     child: Text('Modifier', style: TextStyle(color:Colors.white),)),
                 ),
               ),
+
+              //setting for city
                 Card(
                 elevation: 7.0,
                               child: ListTile(
                  title: Text('Ville: ${userdata.city}', style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
                    color: Colors.red,
-                   onPressed: (){},
+                   onPressed: (){
+                     setState(() {  Dialogs().cityDialog(context ,citys,userdata,_database); });
+                   },
                     child: Text('Modifier', style: TextStyle(color:Colors.white),)),
                 ),
               ),
+
+              //setting for number
                 Card(
                 elevation: 7.0,
                               child: ListTile(
@@ -103,6 +203,9 @@ class _SettingsState extends State<Settings> {
                     child: Text('Modifier', style: TextStyle(color:Colors.white),)),
                 ),
               ),
+             
+             
+             
               
                 ],
               ),
@@ -113,7 +216,7 @@ class _SettingsState extends State<Settings> {
          
     );}else return Loading();
        }
-     );}else return Loading();
+     );}else return NonconnectedSettings();
        }); 
      }else return Loading();
     
@@ -121,195 +224,3 @@ class _SettingsState extends State<Settings> {
 
  
 }
-
-
-// class Settings extends StatefulWidget {
-//   @override
-//   _SettingsState createState() => _SettingsState();
-// }
-
-// class _SettingsState extends State<Settings> {
-//   String _bloodtype;
-//   String _city;
-//   String _nom;
-//   String _prenom;
-//   String _number;
-//   Userdata userdata ;
-
-//   String uid;
-//   bool _loading = false;
-
-   
-//    List<String> citys = [ 'NKTT','NDB'];
-//   List<String> bloodtypes = [ 'O','A+','AB+','A-'];
-//   @override
-//   Widget build(BuildContext context) {
-//      if(!_loading) { 
-//         return StreamBuilder<User>(
-//        stream: DatabaseService().user,
-//        builder: (context, snapshot1) {
-//         User user = snapshot1.data;
-
-//          if(snapshot1.hasData){
-//            DatabaseService _database = DatabaseService(uid: user.uid);
-//            return StreamBuilder<Userdata>(
-//        stream: DatabaseService(uid: user.uid).curentUserdata,
-//        builder: (context, snapshot) {
-//               userdata = snapshot.data;
-//          if(snapshot.hasData){return Scaffold(
-//           appBar:AppBar(
-//             backgroundColor:Colors.deepPurple[400] ,
-//             title: Text('Settings'),
-//           ),
-//           body: ListView(
-//             padding: EdgeInsets.all(10),
-//             children: <Widget>[
-//               Container(
-//                 margin: EdgeInsets.all(10),
-//                 child: TextFormField(
-//                   initialValue: userdata.nom ,
-//                   decoration: InputDecoration(
-                    
-//                     hintText: 'entrez votre nom',
-//                     labelText: 'Nom',
-//                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))
-//                   ),
-//                   onChanged: (val){
-//                     setState(() => _nom = val);
-//                   },
-//                 ),
-//               ),
-
-             
-//                   Container(
-//                 margin: EdgeInsets.all(10),
-//                 child: TextFormField(
-//                   initialValue: userdata.prenom,
-//                   decoration: InputDecoration(
-//                     hintText: 'entrez votre prenom',
-//                     labelText: 'Prenom',
-//                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))
-//                   ),
-//                    onChanged: (val){
-//                     setState(() => _prenom = val);
-//                   },
-                  
-//                   )),
-                  
-//                   Container(
-//                 margin: EdgeInsets.all(10),
-//                 child: TextFormField(
-//                   initialValue: userdata.number,
-//                   keyboardType: TextInputType.phone,
-//                   decoration: InputDecoration(
-//                     hintText: 'entrez votre numero',
-//                     labelText: 'Numero',
-//                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))
-//                   ),
-//                    onChanged: (val){
-//                     setState(() => _number = val);
-//                   },
-//                   )),
-               
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.end,
-//                 children: <Widget>[
-//                   Text('Type de san :',style: TextStyle(fontSize: 17),),
-//                   Container(
-//                     margin: EdgeInsets.only(left: 20,right: 20),
-                    
-//                     child: DropdownButton(
-                     
-//                       items: bloodtypes.map((String type){
-//                         return DropdownMenuItem(
-//                           child: Text(type, style: TextStyle(fontSize:20 , color: Colors.brown),),
-//                           value:type,
-//                           );
-//                       }).toList()
-//                       ,
-//                     value:_bloodtype ?? userdata.bloodtype
-//                      ,onChanged: (s){
-//                        setState(() {
-//                          _bloodtype= s;
-//                        });
-//                        print(s);
-                       
-//                      }),
-//                   ),
-//                 ],
-//               ),
-//                 Row(
-//                 mainAxisAlignment: MainAxisAlignment.end,
-//                 children: <Widget>[
-//                   Text('Ville :',style: TextStyle(fontSize: 17),),
-//                   Container(
-//                     margin: EdgeInsets.only(left: 20,right: 20),
-                    
-//                     child: DropdownButton(
-                     
-//                       items: citys.map((String type){
-//                         return DropdownMenuItem(
-//                           child: Text(type, style: TextStyle(fontSize:20 , color: Colors.brown),),
-//                           value:type,
-//                           );
-//                       }).toList()
-//                       ,
-//                     value:_city ?? userdata.city
-//                      ,onChanged: (s){
-//                        setState(() {
-//                          _city= s;
-//                        });
-//                        print(s);
-                       
-//                      }),
-//                   ),
-//                 ],
-//               ),
-//              Padding(
-//                padding: const EdgeInsets.all(10.0),
-//                child: Row(
-//                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                  children: <Widget>[
-//                    Expanded(
-//                      child: FlatButton(
-                     
-//                      onPressed: () async{
-                      
-                   
-//                   // setState(() => _loading = true);
-//                     Userdata _userdata = Userdata(
-//                       nom:_nom ?? userdata.nom ,
-//                        prenom: _prenom ?? userdata.prenom,
-//                         number: _number ?? userdata.number,
-//                         city:_city ?? userdata.city,
-//                         bloodtype:_bloodtype ?? userdata.bloodtype );
-//                     await _database.updateInformation( _userdata);
-//                     Navigator.pop(context);
-//                    }, 
-//                    child: Text('confirme',
-//                      style: TextStyle(color: Colors.white , fontSize: 17 ,letterSpacing: 1),
-//                    ), 
-                   
-//                    color: Colors.purple[900],)),
-                  
-//                    Expanded(child: FlatButton(onPressed: (){Navigator.pop(context, true);},
-//                     child: Text('Cancel',
-//                     style: TextStyle(color: Colors.white , fontSize: 17 ,letterSpacing: 1),
-//                    ),color:Colors.deepOrange[800]) ),
-                  
-
-//                  ],
-//                ),
-//              )
-//             ],
-//           ),
-//     );}else return Loading();
-//        }
-//      );}else return Loading();
-//        }); 
-//      }else return Loading();
-    
-//   }
-
- 
-// }

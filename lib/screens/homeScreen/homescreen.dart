@@ -56,8 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
             ),
             drawer: Drawer( 
-              child: Mydrawer(),
-            ),
+             
+                child: Mydrawer()),
+            
             body: StreamBuilder<List<Userdata>>(
         stream: DatabaseService().userslist(_bloodtype) ,
         builder: (context, snapshot) {
@@ -74,12 +75,24 @@ class _HomeScreenState extends State<HomeScreen> {
             }
             }),
 
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.add) ,
-              backgroundColor: Colors.deepPurple[400],
-              onPressed: (){
-                Navigator.pushNamed(context, '/signin');
-              }),
+            floatingActionButton: StreamBuilder<User>(
+              stream: DatabaseService().user,
+              builder: (context, snapshot) {
+                double b = 1.0;
+                if(snapshot.hasData && snapshot.data.uid != null){
+                  b = 0.0;
+                }
+                return Opacity(
+                  opacity:b,
+                   child: FloatingActionButton(
+                    child: Icon(Icons.add) ,
+                    backgroundColor: Colors.deepPurple[400],
+                    onPressed: (){
+                    if(b == 1.0) { Navigator.pushNamed(context, '/signin');}
+                    }),
+                );
+              }
+            ),
 
           );
           }

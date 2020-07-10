@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zoumra/Models/userdata.dart';
+import 'package:zoumra/screens/settings/myBloodtypeRadioBox.dart';
 import 'package:zoumra/services/database.dart';
+
+import 'MyCityRadioBox.dart';
 
 class Dialogs{
 
@@ -34,7 +37,7 @@ class Dialogs{
             
               children:<Widget>[
                 SimpleDialogOption(
-                  child: Text('save',style: TextStyle(color:Colors.blue),),
+                  child: Text('save',style: TextStyle(color:Colors.blue , fontSize: 17.0),),
                   onPressed: () async{
                    Userdata _userdata = Userdata(
                      nom: nom ?? userdata.nom,
@@ -49,7 +52,7 @@ class Dialogs{
                   ),
 
                   SimpleDialogOption(
-                  child: Text('cancel',style: TextStyle(color:Colors.red),),
+                  child: Text('cancel',style: TextStyle(color:Colors.red , fontSize: 17.0),),
                   onPressed: (){
                     Navigator.pop(context);
                   },
@@ -92,7 +95,7 @@ class Dialogs{
             
               children:<Widget>[
                 SimpleDialogOption(
-                  child: Text('save',style: TextStyle(color:Colors.blue),),
+                  child: Text('save',style: TextStyle(color:Colors.blue , fontSize: 17.0),),
                   onPressed: () async{
                    Userdata _userdata = Userdata(
                      nom: userdata.nom,
@@ -107,7 +110,7 @@ class Dialogs{
                   ),
 
                   SimpleDialogOption(
-                  child: Text('cancel',style: TextStyle(color:Colors.red),),
+                  child: Text('cancel',style: TextStyle(color:Colors.red , fontSize: 17.0),),
                   onPressed: (){
                     Navigator.pop(context);
                   },
@@ -138,7 +141,7 @@ class Dialogs{
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 keyboardType: TextInputType.phone,
-                initialValue: number ?? userdata.prenom,
+                initialValue: number ?? userdata.number,
                  decoration :InputDecoration(
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))
                 ),
@@ -152,7 +155,7 @@ class Dialogs{
             
               children:<Widget>[
                 SimpleDialogOption(
-                  child: Text('save',style: TextStyle(color:Colors.blue),),
+                  child: Text('save',style: TextStyle(color:Colors.blue , fontSize: 17.0),),
                   onPressed: () async{
                    Userdata _userdata = Userdata(
                      nom: userdata.nom,
@@ -167,7 +170,7 @@ class Dialogs{
                   ),
 
                   SimpleDialogOption(
-                  child: Text('cancel',style: TextStyle(color:Colors.red),),
+                  child: Text('cancel',style: TextStyle(color:Colors.red , fontSize: 17.0),),
                   onPressed: (){
                     Navigator.pop(context);
                   },
@@ -180,4 +183,134 @@ class Dialogs{
       
       );
   }
-}
+
+
+
+     // Bloodtype dialog for bloodtype setting
+      void  bloodtypeDialog(BuildContext context ,List<String> list,Userdata userdata,DatabaseService database){
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        int ini;
+         switch (userdata.bloodtype) {
+            case 'O' : ini =0;break;
+             case 'A+' : ini =1;break;
+              case 'AB+' : ini =2;break;
+               case 'A-' : ini =3;break;
+
+            default: ini = 0;
+          }
+          int go;
+          void changego(int g){
+               go =g;
+          }
+       
+        return SimpleDialog(
+        backgroundColor: Colors.blueGrey[50],
+         
+          
+          contentPadding: EdgeInsets.all(10),
+          title: Text('Type sanguin'),
+          children: <Widget>[
+             MyRadioBox(list: list, ini:ini, changegoo: changego,),
+           
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+            
+              children:<Widget>[
+                SimpleDialogOption(
+                  child: Text('save',style: TextStyle(color:Colors.blue , fontSize: 17.0),),
+                  onPressed: () async{
+                   Userdata _userdata = Userdata(
+                     nom: userdata.nom,
+                     prenom: userdata.prenom,
+                     city: userdata.city,
+                     bloodtype: list[go] ?? userdata.bloodtype,
+                     number:  userdata.number,
+                   );
+                    await database.updateInformation(_userdata);
+                    Navigator.pop(context);
+                  },
+                  ),
+
+                  SimpleDialogOption(
+                  child: Text('cancel',style: TextStyle(color:Colors.red , fontSize: 17.0),),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  ),
+              ]
+            )
+          ],
+        );
+      },
+      
+      );
+  }
+
+
+
+   
+      // city dialoge for city setting
+       void  cityDialog(BuildContext context ,List<String> list,Userdata userdata,DatabaseService database){
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        int ini;
+         switch (userdata.bloodtype) {
+            case 'NKTT' : ini =0;break;
+             case 'NDB' : ini =1;break;
+             
+
+            default: ini = 0;
+          }
+          int go;
+          void changego(int g){
+               go =g;
+          }
+       
+        return SimpleDialog(
+        backgroundColor: Colors.blueGrey[50],
+         
+          
+          contentPadding: EdgeInsets.all(10),
+          title: Text('Ville'),
+          children: <Widget>[
+             MyCityRadioBox(list: list, ini:ini, changegoo: changego,),
+           
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+            
+              children:<Widget>[
+                SimpleDialogOption(
+                  child: Text('save',style: TextStyle(color:Colors.blue , fontSize: 17.0),),
+                  onPressed: () async{
+                   Userdata _userdata = Userdata(
+                     nom: userdata.nom,
+                     prenom: userdata.prenom,
+                     city: list[go] ?? userdata.city,
+                     bloodtype: userdata.bloodtype,
+                     number:  userdata.number,
+                   );
+                    await database.updateInformation(_userdata);
+                    Navigator.pop(context);
+                  },
+                  ),
+
+                  SimpleDialogOption(
+                  child: Text('cancel',style: TextStyle(color:Colors.red , fontSize: 17.0),),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  ),
+              ]
+            )
+          ],
+        );
+      },
+      
+      );
+  }
+   }
