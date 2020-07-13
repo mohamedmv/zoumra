@@ -12,8 +12,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> bloodtypes = ['All', 'O','A+','AB+','A-'];
+  List<String> bloodtypes =[ 'All','O+','O-','A+','A-','AB+','AB-','B+','B-'];
     String _bloodtype = 'All';
+     List<String> citys =[ 'All','NKTT','NDB'];
+    String _city = 'All';
+  
   @override
   Widget build(BuildContext context) {
    
@@ -24,10 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
       
     
     return  Scaffold(
-            backgroundColor: Colors.grey[400],
+            // backgroundColor: Colors.grey[400],
            
             appBar: AppBar(
               actions: <Widget>[
+
+                //Bloodtype dropdown button
                 Container(
                   
                   padding: EdgeInsets.all(5),
@@ -36,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                    
                     items: bloodtypes.map((String type){
                       return DropdownMenuItem(
-                        child: Text(type, style: TextStyle( fontWeight: FontWeight.bold, fontSize:20 , color: Colors.black),),
+                        child: Text(type, style: TextStyle( fontWeight: FontWeight.bold, fontSize:20 ,),),
                         value:type,
                         );
                     }).toList()
@@ -45,6 +50,31 @@ class _HomeScreenState extends State<HomeScreen> {
                    ,onChanged: (s){
                      setState(() {
                        _bloodtype= s;
+                     });
+                     print(s);
+                     
+                   }),
+                ),
+
+                //city dropdown button
+
+                  Container(
+                  
+                  padding: EdgeInsets.all(5),
+                  child: DropdownButton(
+                  
+                   
+                    items: citys.map((String type){
+                      return DropdownMenuItem(
+                        child: Text(type, style: TextStyle( fontWeight: FontWeight.bold, fontSize:20 ,),),
+                        value:type,
+                        );
+                    }).toList()
+                    ,
+                  value:_city
+                   ,onChanged: (s){
+                     setState(() {
+                       _city= s;
                      });
                      print(s);
                      
@@ -60,12 +90,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Mydrawer()),
             
             body: StreamBuilder<List<Userdata>>(
-        stream: DatabaseService().userslist(_bloodtype) ,
+        stream: DatabaseService().userslist(_bloodtype,_city) ,
         builder: (context, snapshot) {
              
              List<Userdata> userslist= snapshot.data;
          if(snapshot.hasData){return Container(
-              child: list.creatlist(userslist),
+              child: userslist == [] ? Loading() : list.creatlist(userslist),
               
             );
             
@@ -78,19 +108,20 @@ class _HomeScreenState extends State<HomeScreen> {
             floatingActionButton: StreamBuilder<User>(
               stream: DatabaseService().user,
               builder: (context, snapshot) {
-                double b = 1.0;
+                
                 if(snapshot.hasData && snapshot.data.uid != null){
-                  b = 0.0;
-                }
-                return Opacity(
-                  opacity:b,
-                   child: FloatingActionButton(
+                 return SizedBox(height: 0.0,width: 0.0);
+                  
+                }else{
+                   return FloatingActionButton(
                     child: Icon(Icons.add) ,
                     backgroundColor: Colors.deepPurple[400],
                     onPressed: (){
-                    if(b == 1.0) { Navigator.pushNamed(context, '/signin');}
-                    }),
+                     Navigator.pushNamed(context, '/signin');
+                    }
                 );
+                }
+               
               }
             ),
 

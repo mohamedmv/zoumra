@@ -36,7 +36,7 @@ class _NonconnectedSettingsState extends State<NonconnectedSettings> {
             children: <Widget>[
 
             // Dark and light theme buttons
-                 Container(
+     Container(
                
                 child: Card(
                  
@@ -57,14 +57,14 @@ class _NonconnectedSettingsState extends State<NonconnectedSettings> {
                             
               Expanded(  flex: 1,
                               child: Container(   
-                                             padding: EdgeInsets.all(5),
+                                             padding: EdgeInsets.all(0.0),
                             child:Card(
                               elevation: 6.0,
                                child: ListTile(
                                  onTap: () => setState(() { mytheme.changetolight();}) ,
                                  title:  Row(
                                    children: <Widget>[
-                                     Text('Light theme',style: TextStyle( fontSize: 15, fontWeight:FontWeight.w600),),
+                                     Text('Light theme',style: TextStyle( fontSize: 13, fontWeight:FontWeight.w600),),
 
                                      Radio( value: 0, groupValue:  g, activeColor: Colors.purple,
                                        onChanged:(val){ mytheme.changetolight();}),
@@ -81,14 +81,14 @@ class _NonconnectedSettingsState extends State<NonconnectedSettings> {
                           Expanded( flex:1,
                               child: Container(  
                               
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(0.0),
                             child:Card(
                                elevation: 6.0, 
                                child: ListTile(
                                  onTap: () => setState(() {mytheme.changetodark();}) ,
                                   title:  Row(
                                    children: <Widget>[
-                                     Text('Dark theme',style: TextStyle( fontSize: 15, fontWeight:FontWeight.w600),),
+                                     Text('Dark theme',style: TextStyle( fontSize: 13, fontWeight:FontWeight.w600),),
 
                                      Radio( value: 1, groupValue:  g, activeColor: Colors.purple,
                                        onChanged:(val){  mytheme.changetodark();}),

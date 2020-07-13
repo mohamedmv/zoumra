@@ -22,7 +22,7 @@ class MyCityRadioBox extends StatefulWidget {
           children: [
           
                 Container(   
-              width: 140,
+              width: 120,
               child:Card(
                    child: ListTile(
                      onTap: () => setState(() {g =0; widget.changegoo(g);}) ,
@@ -37,7 +37,7 @@ class MyCityRadioBox extends StatefulWidget {
               
               ),
                  Container(   
-              width: 150,
+              width: 120,
               child:Card(
                    child: ListTile(
                      onTap: () => setState((){ g =1;  widget.changegoo(g);}) ,

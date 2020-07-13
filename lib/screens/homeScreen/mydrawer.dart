@@ -48,7 +48,7 @@ class _MydrawerState extends State<Mydrawer> {
                          
                            Container(
                              decoration: BoxDecoration(
-                               border: Border(bottom: BorderSide(color: Colors.black26))
+                               border: Border(bottom: BorderSide())
                              ),
                              child: Text("${me.bloodtype}",
                              style: TextStyle( 
@@ -79,17 +79,8 @@ class _MydrawerState extends State<Mydrawer> {
                   ),
                 
                 ),
-                Container(
-                  margin: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    border:Border(bottom: BorderSide(color: Colors.grey[400]))
-                  ),
-                  child: ListTile(
-                    onTap: (){},
-                    leading: Icon(Icons.home),
-                    title: Text('Home')
-                  ),
-                ),
+                 
+                 // liste tile for settings
                  Container(
                   margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
@@ -103,6 +94,8 @@ class _MydrawerState extends State<Mydrawer> {
                     title: Text('Settings')
                   ),
                 ),
+
+
                  Container(
                    margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
@@ -134,8 +127,21 @@ class _MydrawerState extends State<Mydrawer> {
                         );
                      
                     },
-                    leading: Icon(Icons.error_outline),
+                    leading: Icon(Icons.person_outline),
                     title: Text('sign out')
+                  ),
+                ),
+
+
+                 Container(
+                  margin: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    border:Border(bottom: BorderSide(color: Colors.grey[400]))
+                  ),
+                  child: ListTile(
+                    onTap: (){},
+                    leading: Icon(Icons.info_outline),
+                    title: Text('aboute')
                   ),
                 ),
                

@@ -54,17 +54,34 @@ class DatabaseService{
            'bloodtype': userdata.bloodtype,
             'city': userdata.city,
              'number': userdata.number,
+             'actife' : userdata.actife
        }
     );
    }
 
   //get List of users
-  Stream<List<Userdata>>  userslist(String bloodtype){
-    if(bloodtype=='All'){
-      return _userdata.snapshots().map(_userdataFromQuerySnapshot);
+  Stream<List<Userdata>>  userslist(String bloodtype , String city){
+    if(bloodtype=='All' && city == 'All'){
+
+      return _userdata.where('actife', isEqualTo: true)
+      .snapshots().map(_userdataFromQuerySnapshot);
+
+    }else if(bloodtype !='All' && city == 'All'){
+
+      return _userdata.where('actife', isEqualTo: true).where('bloodtype', isEqualTo: bloodtype)
+      .snapshots().map(_userdataFromQuerySnapshot);
+
+    }else if(bloodtype =='All' && city != 'All'){
+
+      return _userdata.where('actife', isEqualTo: true).where('city', isEqualTo: city)
+      .snapshots().map(_userdataFromQuerySnapshot);
+
     }else{
-      return _userdata.where('bloodtype', isEqualTo: bloodtype).snapshots().map(_userdataFromQuerySnapshot);
+
+      return _userdata.where('actife', isEqualTo: true).where('city', isEqualTo: city)
+      .where('bloodtype' , isEqualTo: bloodtype).snapshots().map(_userdataFromQuerySnapshot);
     }
+    
    
   }
 
@@ -78,6 +95,7 @@ class DatabaseService{
         bloodtype: element.data['bloodtype'],
          city: element.data['city'],
          number: element.data['number'],
+         actife: element.data['actife'],
       );
     }).toList();
   }
@@ -95,7 +113,7 @@ class DatabaseService{
      city: snapshot.data['city'],
      number: snapshot.data['number'],
      bloodtype: snapshot.data['bloodtype'],
-
+     actife: snapshot.data['actife'],
    );
  }
   

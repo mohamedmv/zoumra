@@ -14,7 +14,7 @@ class Mylist{
           
           child: Card(
                 
-                
+                elevation: 18.0,
                 margin: EdgeInsets.only(right:5,left:5,top: 2,bottom: 2),
                child: ListTile(
                   leading: Icon(Icons.person),
@@ -35,11 +35,11 @@ class Mylist{
                  ),
                  trailing: CircleAvatar(
                           radius: 22.0,
-                         backgroundColor: Colors.purpleAccent[700],
+                         backgroundColor: Colors.white,
                          child:Text('${data[index].bloodtype}',
                        style: TextStyle(
                            fontSize:19,
-                           color: Colors.blueAccent,
+                           color: Colors.brown,
                            fontWeight: FontWeight.bold
                        ),
                        ),

@@ -22,13 +22,13 @@ class _SignInState extends State<SignIn> {
 
    
    List<String> citys = [ 'NKTT','NDB'];
-  List<String> bloodtypes = [ 'O','A+','AB+','A-'];
+  List<String> bloodtypes = [ 'O+','O-','A+','A-','AB+','AB-','B+','B-'];
   @override
   Widget build(BuildContext context) {
    if(!_loading) {return Scaffold(
       appBar:AppBar(
         backgroundColor:Colors.deepPurple[400] ,
-        title: Text('Information'),
+        title: Text('Sign In'),
       ),
       body: Form(
                 key : _fromkey,
@@ -152,12 +152,16 @@ class _SignInState extends State<SignIn> {
                 ),
               ],
             ),
+
+            // confirme and cancel buttons
            Padding(
              padding: const EdgeInsets.all(10.0),
              child: Row(
                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                children: <Widget>[
                  Expanded(
+                    // confirme button
                    child: FlatButton(
                    
                    onPressed: () async{
@@ -171,7 +175,9 @@ class _SignInState extends State<SignIn> {
                    prenom: _prenom,
                     number: _number,
                     city:_city,
-                    bloodtype:_bloodtype );
+                    bloodtype:_bloodtype ,
+                    actife: true,
+                    );
                   await _database.updateInformation(userdata);
                   Navigator.pop(context);}
                   else{
@@ -184,10 +190,12 @@ class _SignInState extends State<SignIn> {
                  
                  color: Colors.purple[900],)),
                 
-                 Expanded(child: FlatButton(onPressed: (){Navigator.pop(context, true);},
-                  child: Text('Cancel',
-                  style: TextStyle(color: Colors.white , fontSize: 17 ,letterSpacing: 1),
-                 ),color:Colors.deepOrange[800]) ),
+                 Expanded(
+                    // cancel button
+                     child: FlatButton(onPressed: (){Navigator.pop(context, true);},
+                       child: Text('Cancel',
+                        style: TextStyle(color: Colors.white , fontSize: 17 ,letterSpacing: 1),
+                          ),color:Colors.deepOrange[800]) ),
                 
 
                ],

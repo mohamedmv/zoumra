@@ -132,6 +132,29 @@ class _SettingsState extends State<Settings> {
               ),
 
 
+         //setting for active 
+                Card(
+                elevation: 7.0,
+                        child: ListTile(
+                 title: Text('Visible', style: TextStyle(fontSize: 20),),
+                 trailing: Switch(
+                   activeColor: Colors.red,
+                   value: userdata.actife,
+                   onChanged: (val) async{
+                     Userdata _userdata = Userdata(
+                     nom: userdata.nom,
+                     prenom: userdata.prenom,
+                     city: userdata.city,
+                     bloodtype: userdata.bloodtype,
+                     number:  userdata.number,
+                    actife: val,
+                   );
+                    await _database.updateInformation(_userdata);
+                   }
+                   ),
+                ),
+              ),
+
               //setting for nom
               Card(
                 elevation: 6.0,
@@ -203,6 +226,8 @@ class _SettingsState extends State<Settings> {
                     child: Text('Modifier', style: TextStyle(color:Colors.white),)),
                 ),
               ),
+  
+            
              
              
              

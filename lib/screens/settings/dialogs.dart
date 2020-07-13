@@ -46,8 +46,9 @@ class Dialogs{
                      bloodtype: userdata.bloodtype,
                      number: userdata.number,
                    );
-                    await database.updateInformation(_userdata);
                     Navigator.pop(context);
+                    await database.updateInformation(_userdata);
+                   
                   },
                   ),
 
@@ -104,8 +105,9 @@ class Dialogs{
                      bloodtype: userdata.bloodtype,
                      number: userdata.number,
                    );
-                    await database.updateInformation(_userdata);
                     Navigator.pop(context);
+                    await database.updateInformation(_userdata);
+                   
                   },
                   ),
 
@@ -164,8 +166,9 @@ class Dialogs{
                      bloodtype: userdata.bloodtype,
                      number: number ?? userdata.number,
                    );
-                    await database.updateInformation(_userdata);
                     Navigator.pop(context);
+                    await database.updateInformation(_userdata);
+                   
                   },
                   ),
 
@@ -229,8 +232,9 @@ class Dialogs{
                      bloodtype: list[go] ?? userdata.bloodtype,
                      number:  userdata.number,
                    );
-                    await database.updateInformation(_userdata);
                     Navigator.pop(context);
+                    await database.updateInformation(_userdata);
+                   
                   },
                   ),
 
@@ -258,13 +262,13 @@ class Dialogs{
     showDialog(
       context: context,
       builder: (context) {
-        int ini;
-         switch (userdata.bloodtype) {
-            case 'NKTT' : ini =0;break;
-             case 'NDB' : ini =1;break;
+        int init;
+         switch (userdata.city) {
+            case 'NKTT' : init =0;break;
+             case 'NDB' : init =1;break;
              
 
-            default: ini = 0;
+            default: init = 0;
           }
           int go;
           void changego(int g){
@@ -278,7 +282,7 @@ class Dialogs{
           contentPadding: EdgeInsets.all(10),
           title: Text('Ville'),
           children: <Widget>[
-             MyCityRadioBox(list: list, ini:ini, changegoo: changego,),
+             MyCityRadioBox(list: list, ini:init, changegoo: changego,),
            
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -286,7 +290,7 @@ class Dialogs{
               children:<Widget>[
                 SimpleDialogOption(
                   child: Text('save',style: TextStyle(color:Colors.blue , fontSize: 17.0),),
-                  onPressed: () async{
+                  onPressed: () async {
                    Userdata _userdata = Userdata(
                      nom: userdata.nom,
                      prenom: userdata.prenom,
@@ -294,8 +298,10 @@ class Dialogs{
                      bloodtype: userdata.bloodtype,
                      number:  userdata.number,
                    );
-                    await database.updateInformation(_userdata);
-                    Navigator.pop(context);
+                   Navigator.pop(context);
+                await database.updateInformation(_userdata);
+                     
+                   
                   },
                   ),
 

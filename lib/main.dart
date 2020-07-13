@@ -4,9 +4,12 @@ import 'package:zoumra/screens/homescreen/homescreen.dart';
 import 'package:zoumra/screens/infoScreen/infoScreen.dart';
 import 'package:zoumra/screens/settings/settigs.dart';
 import 'package:zoumra/screens/sign-inScreen/sign-in.dart';
+import 'package:zoumra/shared/MySpashScreen.dart';
 import 'package:zoumra/shared/theme.dart';
 
 void main() => runApp(MyApp());
+
+
 
 
 class MyApp extends StatelessWidget {
@@ -29,12 +32,13 @@ class MatirialAppWithTheme extends StatelessWidget {
     bool thetheme = mytheme.theTheme ?? true;
     return MaterialApp(
         theme: thetheme ?  ThemeData.light(): ThemeData.dark() ,
-        home: HomeScreen(),
+       initialRoute: '/splash',
         routes: {
     '/home' : (context) => HomeScreen(),
     '/signin': (context) => SignIn(),
     '/info': (context) => InfoScreen(),
     '/settings': (context) => Settings(),
+    '/splash' : (context) => MySplashScreen(),
         },
       );
   }
