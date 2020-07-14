@@ -1,0 +1,34 @@
+{
+    "home" : "الصفحة الرئيسية",
+    "settings" : "الإعدادات",
+    "info" : "المعلومات",
+    "signout" :  "تسجيل الخروج",
+    "register": "التسجيل",
+    "help" : "مساعدة",
+    "name" : "الاسم",
+    "firstname": "الاسم الاول",
+    "number" : "رقم الهاتف",
+    "bloodtype": "فصيلة الدم",
+    "city": "المدينة",
+
+
+    "enter your name": "أدخل اسمك هنا",
+    "enter your firstname":"أدخل اسمك الأول هنا",
+    "enter your number": "أدخل رقم الهاتف الخاص بك",
+
+
+    "visible": "مرئي",
+    "modify": "تعديل",
+    "cancel" : "إلغاء",
+    "confirm" : "تأكيد",
+    "are you sure?": "هل انت متأكد؟",
+
+    "theme":  "الوضع",
+    "light theme" :"الوضع العادي",
+    "dark theme": "الوضع الليلي",
+
+    "the number is not valid": "الرقم الذي قدمته غير صالح",
+    "you did not give the firstname" :"لم تعط الاسم الأول",
+    "you did not give the name":"لم تعط الاسم"
+
+}

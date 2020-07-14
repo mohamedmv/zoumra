@@ -1,0 +1,35 @@
+{
+    "home" : "page initial",
+    "settings" : "réglage",
+    "info" : "info",
+    "signout" : "Déconnexion",
+    "register": "S'inscrire",
+    "help" : "Aide",
+    "name" : "Nom",
+    "firstname": "Prenom",
+    "number" : "Numero",
+    "bloodtype": "Type sanguin",
+    "city": "Ville",
+
+    
+    "enter your name":"entrez votre nom",
+    "enter your firstname": "entrez votre prenom",
+    "enter your number": "entrez votre numéro de téléphone ",
+
+
+    "visible": "Visible",
+    "modify": "Modifier",
+    "cancel" : "Annuler",
+    "confirm" : "confirmer",
+    "are you sure?": "Vous etes sure?",
+
+    "theme":  "thème",
+    "dark theme" :"thème normal",
+    "light theme" : "thème noir",
+
+    "the number is not valid": "le numero est invalide",
+    "you did not give the firstname" :"vous n aver pas donnez un prenom",
+    "you did not give the name":"vous n aver pas donnez un nom"
+
+
+}

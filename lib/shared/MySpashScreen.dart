@@ -11,12 +11,17 @@ class MySplashScreen extends StatelessWidget {
     return Container(
       child: SplashScreen(
         
-        seconds: 10,
-        backgroundColor: Colors.white,
-        image: Image.asset('images/mysplash.gif'),
+        seconds: 6,
+      
+        image: Image.asset('images/image2.PNG'),
         navigateAfterSeconds: HomeScreen(),
-        loaderColor: Colors.red,
-        photoSize: 170.0,
+        
+        photoSize: 100.0,
+        gradientBackground: LinearGradient(colors: <Color> [
+               Colors.blue[500],
+               Colors.blue[700],
+               Colors.blue[900],
+        ]),
         ),
     );
   }

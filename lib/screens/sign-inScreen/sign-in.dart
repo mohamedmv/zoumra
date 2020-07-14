@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zoumra/Models/userdata.dart';
 import 'package:zoumra/services/database.dart';
+import 'package:zoumra/shared/AppLocalization.dart';
 import 'package:zoumra/shared/Loading.dart';
 
 class SignIn extends StatefulWidget {
@@ -28,7 +29,7 @@ class _SignInState extends State<SignIn> {
    if(!_loading) {return Scaffold(
       appBar:AppBar(
         backgroundColor:Colors.deepPurple[400] ,
-        title: Text('Sign In'),
+        title: Text(AppLocalization.of(context).trenslate('register')),
       ),
       body: Form(
                 key : _fromkey,
@@ -39,16 +40,15 @@ class _SignInState extends State<SignIn> {
               margin: EdgeInsets.all(10),
               child: TextFormField(
                  validator: (val){
-                     if(val.length ==0){
-                       return 'vous n aver pas donnez un nom';
-                     }else if(val.length > 15)
-                     return 'le nom est tres long';
+                     if(val.isEmpty){
+                      return AppLocalization.of(context).trenslate('you did not give the name');
+                     }
                      else return null;
                    },
                 
                 decoration: InputDecoration(
-                  hintText: 'entrez votre nom',
-                  labelText: 'Nom',
+                  hintText: AppLocalization.of(context).trenslate('enter your name'),
+                  labelText: AppLocalization.of(context).trenslate('name'),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))
                 ),
                 onChanged: (val){
@@ -62,15 +62,14 @@ class _SignInState extends State<SignIn> {
               margin: EdgeInsets.all(10),
               child: TextFormField(
                    validator: (val){
-                     if(val.length ==0){
-                       return 'vous n aver pas donnez un prenom';
-                     }else if(val.length > 15)
-                     return 'le prenom est tres long';
+                     if(val.isEmpty){
+                       return AppLocalization.of(context).trenslate('you did not give the firstname');
+                     }
                      else return null;
                    },
                 decoration: InputDecoration(
-                  hintText: 'entrez votre prenom',
-                  labelText: 'Prenom',
+                  hintText: AppLocalization.of(context).trenslate('enter your firstname'),
+                  labelText: AppLocalization.of(context).trenslate('firstname'),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))
                 ),
                  onChanged: (val){
@@ -84,13 +83,13 @@ class _SignInState extends State<SignIn> {
               child: TextFormField(
                 validator: (val){
                   if(val.length < 8 || val.length > 15 || val.isEmpty){
-                    return 'le numero est invalide';
+                    return AppLocalization.of(context).trenslate('the number is not valid');
                   }else return null;
                 },
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
-                  hintText: 'entrez votre numero',
-                  labelText: 'Numero',
+                  hintText:AppLocalization.of(context).trenslate('enter your number'),
+                  labelText: AppLocalization.of(context).trenslate('number'),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))
                 ),
                  onChanged: (val){
@@ -101,7 +100,8 @@ class _SignInState extends State<SignIn> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Text('Type de san :',style: TextStyle(fontSize: 17),),
+                Text(AppLocalization.of(context).trenslate('bloodtype')
+                ,style: TextStyle(fontSize: 17),),
                 Container(
                   margin: EdgeInsets.only(left: 20,right: 20),
                   
@@ -128,7 +128,7 @@ class _SignInState extends State<SignIn> {
               Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Text('Ville :',style: TextStyle(fontSize: 17),),
+                Text(AppLocalization.of(context).trenslate('city'),style: TextStyle(fontSize: 17),),
                 Container(
                   margin: EdgeInsets.only(left: 20,right: 20),
                   
@@ -184,7 +184,7 @@ class _SignInState extends State<SignIn> {
                     print('Can not sign in');
                   }}
                  }, 
-                 child: Text('confirme',
+                 child: Text(AppLocalization.of(context).trenslate('confirm'),
                    style: TextStyle(color: Colors.white , fontSize: 17 ,letterSpacing: 1),
                  ), 
                  
@@ -193,7 +193,7 @@ class _SignInState extends State<SignIn> {
                  Expanded(
                     // cancel button
                      child: FlatButton(onPressed: (){Navigator.pop(context, true);},
-                       child: Text('Cancel',
+                       child: Text(AppLocalization.of(context).trenslate('cancel'),
                         style: TextStyle(color: Colors.white , fontSize: 17 ,letterSpacing: 1),
                           ),color:Colors.deepOrange[800]) ),
                 

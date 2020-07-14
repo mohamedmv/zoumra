@@ -1,0 +1,38 @@
+{
+    
+    "home" : "Home",
+    "settings" : "Settings",
+    "info" : "info",
+    "signout" : "Sign out",
+    "register": "Sign in",
+    "help" : "Help",
+    "name" : "Name",
+    "firstname": "Firstname",
+    "number" : "Number",
+    "bloodtype": "Blood type",
+    "city": "City",
+
+
+    "enter your name": "enter your name",
+    "enter your firstname": "enter your firstname",
+    "enter your number": "enter your phon number",
+
+
+    "visible": "Visible",
+    "modify": "Modify",
+    "cancel" : "Cancel",
+    "confirm" : "confirm",
+    "are you sure?" : "Are you sure?",
+
+    "theme":  "Theme",
+    "dark theme" :"Dark theme",
+    "light theme" : "Light theme",
+
+    "the number is not valid": "the number is not valid",
+    "you did not give the firstname" :"you did not give the first name",
+    "you did not give the name":"you did not give the name"
+
+    
+
+
+}

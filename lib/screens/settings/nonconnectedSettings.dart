@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zoumra/shared/AppLocalization.dart';
 
 
 import 'package:zoumra/shared/theme.dart';
@@ -29,7 +30,7 @@ class _NonconnectedSettingsState extends State<NonconnectedSettings> {
      return Scaffold(
           appBar:AppBar(
             backgroundColor:Colors.deepPurple[400] ,
-            title: Text('Settings'),
+            title: Text(AppLocalization.of(context).trenslate('settings')),
           ),
           body: ListView(
             padding: EdgeInsets.all(10),
@@ -46,7 +47,8 @@ class _NonconnectedSettingsState extends State<NonconnectedSettings> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('Theme', style: TextStyle( fontSize: 23,fontWeight: FontWeight.w600),),
+                        child: Text(AppLocalization.of(context).trenslate('theme') ,
+                         style: TextStyle( fontSize: 23,fontWeight: FontWeight.w600),),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -64,7 +66,8 @@ class _NonconnectedSettingsState extends State<NonconnectedSettings> {
                                  onTap: () => setState(() { mytheme.changetolight();}) ,
                                  title:  Row(
                                    children: <Widget>[
-                                     Text('Light theme',style: TextStyle( fontSize: 13, fontWeight:FontWeight.w600),),
+                                     Text(AppLocalization.of(context).trenslate('light theme') 
+                                     ,style: TextStyle( fontSize: 13, fontWeight:FontWeight.w600),),
 
                                      Radio( value: 0, groupValue:  g, activeColor: Colors.purple,
                                        onChanged:(val){ mytheme.changetolight();}),
@@ -88,7 +91,8 @@ class _NonconnectedSettingsState extends State<NonconnectedSettings> {
                                  onTap: () => setState(() {mytheme.changetodark();}) ,
                                   title:  Row(
                                    children: <Widget>[
-                                     Text('Dark theme',style: TextStyle( fontSize: 13, fontWeight:FontWeight.w600),),
+                                     Text(AppLocalization.of(context).trenslate('dark theme') ,
+                                     style: TextStyle( fontSize: 13, fontWeight:FontWeight.w600),),
 
                                      Radio( value: 1, groupValue:  g, activeColor: Colors.purple,
                                        onChanged:(val){  mytheme.changetodark();}),

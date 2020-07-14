@@ -4,6 +4,7 @@ import 'package:zoumra/Models/userdata.dart';
 import 'package:zoumra/screens/homeScreen/mydrawer.dart';
 import 'package:zoumra/screens/homeScreen/mylist.dart';
 import 'package:zoumra/services/database.dart';
+import 'package:zoumra/shared/AppLocalization.dart';
 import 'package:zoumra/shared/Loading.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -82,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
               backgroundColor:Colors.deepPurple[400] ,
-              title: Text('HomeScreen')
+              title: Text(AppLocalization.of(context).trenslate('home'))
 
             ),
             drawer: Drawer( 

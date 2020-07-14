@@ -6,13 +6,15 @@ import 'package:zoumra/Models/userdata.dart';
 class Mylist{
 
   ListView creatlist(List<Userdata> data){
-
+    
+    
     return ListView.builder(
       itemCount:data.length ,
       itemBuilder: (context,index){
         return Container(
           
           child: Card(
+            
                 
                 elevation: 18.0,
                 margin: EdgeInsets.only(right:5,left:5,top: 2,bottom: 2),
@@ -20,7 +22,7 @@ class Mylist{
                   leading: Icon(Icons.person),
                  onTap: (){
                   
-                   Navigator.pushNamed(context, '/info',arguments: {
+                   Navigator.pushNamed(context, '/info',arguments: { 
                     'nom': data[index].nom,
                     'prenom': data[index].prenom,
                     'numero' : data[index].number,
@@ -33,19 +35,25 @@ class Mylist{
                  style: TextStyle(letterSpacing: 0.5 )
                  
                  ),
-                 trailing: CircleAvatar(
-                          radius: 22.0,
-                         backgroundColor: Colors.white,
-                         child:Text('${data[index].bloodtype}',
-                       style: TextStyle(
-                           fontSize:19,
-                           color: Colors.brown,
-                           fontWeight: FontWeight.bold
-                       ),
-                       ),
-                         
-                       
-                       ),
+                 trailing: Container(
+                     width: 70,
+                     height:90,
+                     child: Center(
+                             
+                             child:Hero(
+                               tag: '${data[index].number}',
+                                      child: Text('${data[index].bloodtype}',
+                           style: TextStyle(
+                                 fontSize:24,
+                                 color: Colors.orangeAccent[700],
+                                 fontWeight: FontWeight.w600
+                           ),
+                           ),
+                             ),
+                             
+                           
+                           ),
+                   ),
                 
                 
                 

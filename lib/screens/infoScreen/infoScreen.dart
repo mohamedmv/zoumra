@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zoumra/shared/AppLocalization.dart';
 
 class InfoScreen extends StatefulWidget {
   @override
@@ -13,60 +14,69 @@ class _InfoScreenState extends State<InfoScreen> {
       
     //  backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
-        title: Text('Info'),
+        title: Text(AppLocalization.of(context).trenslate('info')),
         backgroundColor:Colors.deepPurple[400] ,
       ),
     
-      body: Center(
-      
-        child: Container(
-          padding: EdgeInsets.all(20),
-          child: Material(
-            
-            
-           elevation: 7.0,
-           borderRadius: BorderRadius.circular(10.0),
-            child: Container(
-              margin: EdgeInsets.all(20),
-               height: 120,
+      body:Center(
+        
+          child: Container(
+            padding: EdgeInsets.all(20),
+            child: Material(
               
               
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                    
-                    children: <Widget>[
+             elevation: 7.0,
+             borderRadius: BorderRadius.circular(10.0),
+              child: Container(
+                margin: EdgeInsets.all(20),
+                 height: 190,
+                
+                
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  
                       
-                      Wrap(
-                        direction: Axis.horizontal,
-                        children: <Widget>[
-                          Text('Nom : ${user['nom']}',
-                          style: TextStyle(fontSize:20,fontWeight: FontWeight.w500 ),
-                          ),
-                           Text(' ${user['prenom']}',
-                          style: TextStyle(fontSize:20,fontWeight: FontWeight.w500 ),
-                          ),
-                        ],
-                      ),
+                      children: <Widget>[
+                        
+                        
+                   Center(
+                     child:  Hero(
+                   tag: '${user['numero']}',
+                       child: Text('${user['bloodtype']}',
+                          style: TextStyle(fontSize:70,fontWeight: FontWeight.w600,color:Colors.orangeAccent[700]),
+                          ),),
+                   ),
 
-                      Text('Numero : ${user['numero']}',
-                      style: TextStyle(fontSize:20, fontWeight: FontWeight.w400),
-                      ),
+                        Wrap(
+                          direction: Axis.horizontal,
+                          children: <Widget>[
+                            Text('${AppLocalization.of(context).trenslate('name')} : ${user['nom']}',
+                            style: TextStyle(fontSize:20,fontWeight: FontWeight.w500 ),
+                            ),
+                             Text(' ${user['prenom']}',
+                            style: TextStyle(fontSize:20,fontWeight: FontWeight.w500 ),
+                            ),
+                          ],
+                        ),
 
-                      Text('Group Sangin : ${user['bloodtype']}',
-                      style: TextStyle(fontSize:20,fontWeight: FontWeight.w400 ),
-                      ),
-                       Text('Ville: ${user['city']}',
-                      style: TextStyle(fontSize:20,fontWeight: FontWeight.w400 ),
-                      ),
-                      
+                        Text('${AppLocalization.of(context).trenslate('number')} : ${user['numero']}',
+                        style: TextStyle(fontSize:20, fontWeight: FontWeight.w400),
+                        ),
 
-                    ]
-                  ),
+                       
+                         Text('${AppLocalization.of(context).trenslate('city')}: ${user['city']}',
+                        style: TextStyle(fontSize:20,fontWeight: FontWeight.w400 ),
+                        ),
+                        
+
+                      ]
+                    ),
+              ),
             ),
           ),
         ),
-      ),
+      
         
       
     );

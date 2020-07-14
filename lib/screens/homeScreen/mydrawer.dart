@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zoumra/Models/userdata.dart';
 import 'package:zoumra/services/database.dart';
+import 'package:zoumra/shared/AppLocalization.dart';
 import 'package:zoumra/shared/Loading.dart';
 
 import 'nonconnectedDrawer.dart';
@@ -91,7 +92,7 @@ class _MydrawerState extends State<Mydrawer> {
                       Navigator.pushNamed(context, '/settings');
                     },
                     leading: Icon(Icons.settings),
-                    title: Text('Settings')
+                    title: Text(AppLocalization.of(context).trenslate('settings'))
                   ),
                 ),
 
@@ -109,18 +110,18 @@ class _MydrawerState extends State<Mydrawer> {
                           title : Row(
                             children: <Widget>[
                               Icon(Icons.error_outline),
-                              Text('Vous etes sure?'),
+                              Text(AppLocalization.of(context).trenslate('are you sure?')),
                             ],
                             ),
                             actions: <Widget>[
                               FlatButton( 
                                   
                                   onPressed: ()async{  await DatabaseService().signOut(); Navigator.pop(context);}, 
-                                  child: Text('Sign out' , style: TextStyle(color:Colors.red),)),
+                                  child: Text(AppLocalization.of(context).trenslate('signout') , style: TextStyle(color:Colors.red),)),
                                    FlatButton( 
                                  
                                   onPressed: (){Navigator.pop(context);}, 
-                                  child: Text('cancel')),
+                                  child: Text(AppLocalization.of(context).trenslate('cancel'))),
                              
                             ],
                         )
@@ -128,7 +129,7 @@ class _MydrawerState extends State<Mydrawer> {
                      
                     },
                     leading: Icon(Icons.person_outline),
-                    title: Text('sign out')
+                    title: Text(AppLocalization.of(context).trenslate('signout'))
                   ),
                 ),
 
@@ -141,7 +142,7 @@ class _MydrawerState extends State<Mydrawer> {
                   child: ListTile(
                     onTap: (){},
                     leading: Icon(Icons.info_outline),
-                    title: Text('aboute')
+                    title: Text(AppLocalization.of(context).trenslate('help'))
                   ),
                 ),
                

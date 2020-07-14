@@ -3,10 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:zoumra/Models/userdata.dart';
 import 'package:zoumra/screens/settings/dialogs.dart';
 import 'package:zoumra/services/database.dart';
+import 'package:zoumra/shared/AppLocalization.dart';
 import 'package:zoumra/shared/Loading.dart';
 import 'package:zoumra/shared/theme.dart';
 
-import 'nomconnectedSettings.dart';
+import 'nonconnectedSettings.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -47,7 +48,7 @@ class _SettingsState extends State<Settings> {
          if(snapshot.hasData){return Scaffold(
           appBar:AppBar(
             backgroundColor:Colors.deepPurple[400] ,
-            title: Text('Settings'),
+            title: Text(AppLocalization.of(context).trenslate('settings')),
           ),
           body: ListView(
             padding: EdgeInsets.all(10),
@@ -65,7 +66,8 @@ class _SettingsState extends State<Settings> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('Theme', style: TextStyle( fontSize: 23,fontWeight: FontWeight.w600),),
+                        child: Text(AppLocalization.of(context).trenslate('theme') , 
+                        style: TextStyle( fontSize: 23,fontWeight: FontWeight.w600),),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -83,7 +85,8 @@ class _SettingsState extends State<Settings> {
                                  onTap: () => setState(() { mytheme.changetolight();}) ,
                                  title:  Row(
                                    children: <Widget>[
-                                     Text('Light theme',style: TextStyle( fontSize: 15, fontWeight:FontWeight.w600),),
+                                     Text(AppLocalization.of(context).trenslate('light theme') ,
+                                     style: TextStyle( fontSize: 15, fontWeight:FontWeight.w600),),
 
                                      Radio( value: 0, groupValue:  g, activeColor: Colors.purple,
                                        onChanged:(val){ mytheme.changetolight();}),
@@ -107,7 +110,8 @@ class _SettingsState extends State<Settings> {
                                  onTap: () => setState(() {mytheme.changetodark();}) ,
                                   title:  Row(
                                    children: <Widget>[
-                                     Text('Dark theme',style: TextStyle( fontSize: 15, fontWeight:FontWeight.w600),),
+                                     Text(AppLocalization.of(context).trenslate('dark theme') ,
+                                     style: TextStyle( fontSize: 15, fontWeight:FontWeight.w600),),
 
                                      Radio( value: 1, groupValue:  g, activeColor: Colors.purple,
                                        onChanged:(val){  mytheme.changetodark();}),
@@ -136,7 +140,8 @@ class _SettingsState extends State<Settings> {
                 Card(
                 elevation: 7.0,
                         child: ListTile(
-                 title: Text('Visible', style: TextStyle(fontSize: 20),),
+                 title: Text(AppLocalization.of(context).trenslate('visible')
+                 , style: TextStyle(fontSize: 20),),
                  trailing: Switch(
                    activeColor: Colors.red,
                    value: userdata.actife,
@@ -159,14 +164,16 @@ class _SettingsState extends State<Settings> {
               Card(
                 elevation: 6.0,
                               child: ListTile(
-                 title: Text('Nom: ${userdata.nom}', style: TextStyle(fontSize: 20),),
+                 title: Text('${AppLocalization.of(context).trenslate('name')}: ${userdata.nom}',
+                  style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
                    color: Colors.red,
                    onPressed: (){
                     
                      Dialogs().nomDialog(context ,userdata,_database);
                    },
-                    child: Text('Modifier', style: TextStyle(color:Colors.white),)),
+                    child: Text(AppLocalization.of(context).trenslate('modify'),
+                     style: TextStyle(color:Colors.white),)),
                 ),
               ),
 
@@ -174,13 +181,14 @@ class _SettingsState extends State<Settings> {
                 Card(
                 elevation: 6.0,
                               child: ListTile(
-                 title: Text('Prenom: ${userdata.prenom}', style: TextStyle(fontSize: 20),),
+                 title: Text('${AppLocalization.of(context).trenslate('firstname')}: ${userdata.prenom}', style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
                    color: Colors.red,
                    onPressed: (){
                       Dialogs().prenomDialog(context ,userdata,_database);
                    },
-                    child: Text('Modifier', style: TextStyle(color:Colors.white),)),
+                    child: Text(AppLocalization.of(context).trenslate('modify')
+                    , style: TextStyle(color:Colors.white),)),
                 ),
               ),
 
@@ -188,14 +196,15 @@ class _SettingsState extends State<Settings> {
                 Card(
                 elevation: 7.0,
                               child: ListTile(
-                 title: Text('Type sanguin: ${userdata.bloodtype}', style: TextStyle(fontSize: 20),),
+                 title: Text('${AppLocalization.of(context).trenslate('bloodtype')}: ${userdata.bloodtype}', style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
                    color: Colors.red,
                    onPressed: (){
                      setState(() {  Dialogs().bloodtypeDialog(context ,bloodtypes,userdata,_database); });
                     
                    },
-                    child: Text('Modifier', style: TextStyle(color:Colors.white),)),
+                    child: Text(AppLocalization.of(context).trenslate('modify')
+                    , style: TextStyle(color:Colors.white),)),
                 ),
               ),
 
@@ -203,13 +212,14 @@ class _SettingsState extends State<Settings> {
                 Card(
                 elevation: 7.0,
                               child: ListTile(
-                 title: Text('Ville: ${userdata.city}', style: TextStyle(fontSize: 20),),
+                 title: Text('${AppLocalization.of(context).trenslate('city')}: ${userdata.city}', style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
                    color: Colors.red,
                    onPressed: (){
                      setState(() {  Dialogs().cityDialog(context ,citys,userdata,_database); });
                    },
-                    child: Text('Modifier', style: TextStyle(color:Colors.white),)),
+                    child: Text(AppLocalization.of(context).trenslate('modify')
+                    , style: TextStyle(color:Colors.white),)),
                 ),
               ),
 
@@ -217,13 +227,14 @@ class _SettingsState extends State<Settings> {
                 Card(
                 elevation: 7.0,
                               child: ListTile(
-                 title: Text('Numero: ${userdata.number}', style: TextStyle(fontSize: 20),),
+                 title: Text('${AppLocalization.of(context).trenslate('number')}: ${userdata.number}', style: TextStyle(fontSize: 20),),
                  trailing: FlatButton(
                    color: Colors.red,
                    onPressed: (){
                      Dialogs().numberDialog(context ,userdata,_database);
                    },
-                    child: Text('Modifier', style: TextStyle(color:Colors.white),)),
+                    child: Text(AppLocalization.of(context).trenslate('modify')
+                    , style: TextStyle(color:Colors.white),)),
                 ),
               ),
   

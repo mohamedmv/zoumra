@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zoumra/shared/AppLocalization.dart';
 
 
 class NonConnectedDrawer extends StatelessWidget {
@@ -51,17 +52,8 @@ class NonConnectedDrawer extends StatelessWidget {
                   ),
                 
                 ),
-                Container(
-                  margin: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    border:Border(bottom: BorderSide(color: Colors.grey[400]))
-                  ),
-                  child: ListTile(
-                    onTap: (){},
-                    leading: Icon(Icons.home),
-                    title: Text('Home')
-                  ),
-                ),
+                
+                // settings list tile
                  Container(
                   margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
@@ -71,7 +63,19 @@ class NonConnectedDrawer extends StatelessWidget {
                     onTap: (){ Navigator.pushNamed(context, '/settings');  },
 
                     leading: Icon(Icons.settings),
-                    title: Text('Settings')
+                    title: Text(AppLocalization.of(context).trenslate('settings'))
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    border:Border(bottom: BorderSide(color: Colors.grey[400]))
+                  ),
+                  child: ListTile(
+                    onTap: (){},
+                    leading: Icon(Icons.info_outline),
+                    title: Text(AppLocalization.of(context).trenslate('help'))
                   ),
                 ),
                  
